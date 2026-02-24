@@ -1,27 +1,31 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>双翼拓展箱 - 模块化移动房屋解决方案</title>
-    <meta name="description" content="双翼拓展箱，专业提供可折叠拓展集装箱房屋，20尺/30尺/40尺多种规格，适用于工地宿舍、景区民宿、临时办公等场景。">
+    <title>WINGBOX | Expandable Container Living</title>
+    <meta name="description" content="Premium expandable container homes. Innovative folding design doubles your space. 20ft, 30ft, 40ft modular solutions for living, work, and hospitality.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #1a1a2e;
-            --primary-light: #16213e;
-            --accent: #e94560;
-            --accent-hover: #c73a52;
-            --gold: #d4a574;
-            --text: #333;
-            --text-light: #666;
-            --bg-light: #f8f9fa;
-            --white: #fff;
-            --shadow: 0 4px 20px rgba(0,0,0,0.1);
-            --shadow-hover: 0 8px 30px rgba(0,0,0,0.15);
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --color-bg: #FAFAFA;
+            --color-bg-alt: #F5F5F5;
+            --color-text: #1A1A1A;
+            --color-text-secondary: #666666;
+            --color-text-muted: #999999;
+            --color-accent: #C9A962;
+            --color-accent-dark: #B8984A;
+            --color-border: #E5E5E5;
+            --color-white: #FFFFFF;
+            
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            
+            --transition-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --shadow-soft: 0 4px 30px rgba(0, 0, 0, 0.06);
+            --shadow-hover: 0 8px 50px rgba(0, 0, 0, 0.12);
         }
 
         * {
@@ -30,84 +34,82 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
-            color: var(--text);
+            font-family: var(--font-body);
+            color: var(--color-text);
+            background: var(--color-bg);
             line-height: 1.6;
             overflow-x: hidden;
         }
 
         /* Navigation */
-        .navbar {
+        .nav {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             z-index: 1000;
-            background: rgba(26, 26, 46, 0.95);
-            backdrop-filter: blur(10px);
-            transition: var(--transition);
-        }
-
-        .navbar-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 2rem;
+            padding: 24px 48px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 70px;
+            transition: all 0.4s var(--transition-smooth);
         }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--white);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+        .nav.scrolled {
+            background: rgba(250, 250, 250, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 16px 48px;
+            box-shadow: 0 1px 0 var(--color-border);
         }
 
-        .logo-icon {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, var(--accent), var(--gold));
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
+        .nav-logo {
+            font-family: var(--font-heading);
+            font-size: 24px;
+            font-weight: 600;
+            letter-spacing: 3px;
+            color: var(--color-white);
+            transition: color 0.4s;
+        }
+
+        .nav.scrolled .nav-logo {
+            color: var(--color-text);
         }
 
         .nav-links {
             display: flex;
+            gap: 48px;
             list-style: none;
-            gap: 2.5rem;
         }
 
         .nav-links a {
-            color: rgba(255,255,255,0.9);
+            color: var(--color-white);
             text-decoration: none;
+            font-size: 13px;
             font-weight: 500;
-            font-size: 0.95rem;
-            transition: var(--transition);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            transition: color 0.3s;
             position: relative;
+        }
+
+        .nav.scrolled .nav-links a {
+            color: var(--color-text);
         }
 
         .nav-links a::after {
             content: '';
             position: absolute;
-            bottom: -5px;
+            bottom: -4px;
             left: 0;
             width: 0;
-            height: 2px;
-            background: var(--accent);
-            transition: var(--transition);
-        }
-
-        .nav-links a:hover {
-            color: var(--white);
+            height: 1px;
+            background: var(--color-accent);
+            transition: width 0.3s;
         }
 
         .nav-links a:hover::after {
@@ -115,348 +117,312 @@
         }
 
         .nav-cta {
-            background: var(--accent);
-            color: var(--white) !important;
-            padding: 0.6rem 1.5rem;
-            border-radius: 4px;
-            transition: var(--transition);
+            padding: 12px 28px;
+            background: var(--color-accent);
+            color: var(--color-white) !important;
+            border-radius: 0;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            transition: all 0.3s;
         }
 
         .nav-cta:hover {
-            background: var(--accent-hover);
+            background: var(--color-accent-dark);
         }
 
         .nav-cta::after {
             display: none !important;
         }
 
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--white);
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
         /* Hero Section */
         .hero {
-            min-height: 100vh;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            height: 100vh;
+            min-height: 700px;
             position: relative;
             display: flex;
             align-items: center;
+            justify-content: center;
             overflow: hidden;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f0f23 100%);
         }
 
-        .hero::before {
-            content: '';
+        .hero-image {
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('assets/双翼拓展箱，精美视频和图片/20尺，坡顶，外面金属雕花板，正面图.jpg') center/cover;
-            opacity: 0.3;
+            inset: 0;
+            background: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920&q=80') center/cover;
+            opacity: 0.4;
         }
 
         .hero-overlay {
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(90deg, rgba(26,26,46,0.95) 0%, rgba(26,26,46,0.7) 50%, rgba(26,26,46,0.4) 100%);
-        }
-
-        .hero-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            position: relative;
-            z-index: 2;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.5));
         }
 
         .hero-content {
-            color: var(--white);
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            max-width: 900px;
+            padding: 0 24px;
+            color: var(--color-white);
         }
 
-        .hero-badge {
-            display: inline-block;
-            background: rgba(233, 69, 96, 0.2);
-            border: 1px solid var(--accent);
-            color: var(--accent);
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            margin-bottom: 1.5rem;
-            letter-spacing: 1px;
+        .hero-label {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--color-accent);
+            margin-bottom: 32px;
+            opacity: 0;
+            animation: fadeInUp 0.8s var(--transition-smooth) forwards;
         }
 
         .hero-title {
-            font-size: 3.5rem;
-            font-weight: 900;
-            line-height: 1.2;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, var(--white) 0%, var(--gold) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            font-family: var(--font-heading);
+            font-size: clamp(42px, 8vw, 72px);
+            font-weight: 400;
+            line-height: 1.1;
+            margin-bottom: 32px;
+            opacity: 0;
+            animation: fadeInUp 0.8s 0.2s var(--transition-smooth) forwards;
+        }
+
+        .hero-title span {
+            font-style: italic;
+            color: var(--color-accent);
         }
 
         .hero-subtitle {
-            font-size: 1.25rem;
-            color: rgba(255,255,255,0.8);
-            margin-bottom: 2rem;
+            font-size: 18px;
+            font-weight: 300;
             line-height: 1.8;
-            max-width: 500px;
+            max-width: 600px;
+            margin: 0 auto 48px;
+            opacity: 0;
+            color: rgba(255,255,255,0.85);
+            animation: fadeInUp 0.8s 0.4s var(--transition-smooth) forwards;
         }
 
-        .hero-stats {
-            display: flex;
-            gap: 3rem;
-            margin-bottom: 2.5rem;
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--accent);
-        }
-
-        .stat-label {
-            font-size: 0.9rem;
-            color: rgba(255,255,255,0.6);
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 1rem 2rem;
-            border-radius: 4px;
-            font-weight: 600;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: var(--transition);
-            text-decoration: none;
+        .hero-cta {
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            border: none;
+            gap: 12px;
+            padding: 18px 40px;
+            background: var(--color-accent);
+            color: var(--color-white);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.4s;
+            opacity: 0;
+            animation: fadeInUp 0.8s 0.6s var(--transition-smooth) forwards;
         }
 
-        .btn-primary {
-            background: var(--accent);
-            color: var(--white);
-        }
-
-        .btn-primary:hover {
-            background: var(--accent-hover);
+        .hero-cta:hover {
+            background: var(--color-accent-dark);
             transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(233, 69, 96, 0.3);
         }
 
-        .btn-secondary {
-            background: transparent;
-            color: var(--white);
-            border: 2px solid rgba(255,255,255,0.3);
+        .hero-cta svg {
+            width: 16px;
+            height: 16px;
+            transition: transform 0.3s;
         }
 
-        .btn-secondary:hover {
-            background: rgba(255,255,255,0.1);
-            border-color: var(--white);
+        .hero-cta:hover svg {
+            transform: translateX(4px);
         }
 
-        .hero-image {
-            position: relative;
-        }
-
-        .hero-image img {
-            width: 100%;
-            border-radius: 12px;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
-            transform: perspective(1000px) rotateY(-5deg);
-            transition: var(--transition);
-        }
-
-        .hero-image:hover img {
-            transform: perspective(1000px) rotateY(0deg);
-        }
-
-        .hero-image-badge {
+        .hero-scroll {
             position: absolute;
-            bottom: -20px;
-            left: -20px;
-            background: var(--white);
-            padding: 1rem 1.5rem;
-            border-radius: 8px;
-            box-shadow: var(--shadow);
-        }
-
-        .hero-image-badge span {
-            display: block;
-            font-size: 0.85rem;
-            color: var(--text-light);
-        }
-
-        .hero-image-badge strong {
-            font-size: 1.1rem;
-            color: var(--primary);
-        }
-
-        /* Scroll indicator */
-        .scroll-indicator {
-            position: absolute;
-            bottom: 2rem;
+            bottom: 48px;
             left: 50%;
             transform: translateX(-50%);
-            color: rgba(255,255,255,0.5);
-            animation: bounce 2s infinite;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            color: rgba(255,255,255,0.6);
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0;
+            animation: fadeIn 1s 1s forwards;
         }
 
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
-            40% { transform: translateX(-50%) translateY(-10px); }
-            60% { transform: translateX(-50%) translateY(-5px); }
+        .hero-scroll-line {
+            width: 1px;
+            height: 60px;
+            background: linear-gradient(to bottom, var(--color-accent), transparent);
+            animation: scrollLine 2s infinite;
         }
 
-        /* Features Section */
-        .features {
-            padding: 6rem 0;
-            background: var(--bg-light);
+        @keyframes scrollLine {
+            0% { transform: scaleY(0); transform-origin: top; }
+            50% { transform: scaleY(1); transform-origin: top; }
+            50.1% { transform-origin: bottom; }
+            100% { transform: scaleY(0); transform-origin: bottom; }
         }
 
-        .container {
+        /* Section Styles */
+        .section {
+            padding: 120px 48px;
             max-width: 1400px;
             margin: 0 auto;
-            padding: 0 2rem;
         }
 
         .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
+            margin-bottom: 80px;
         }
 
-        .section-tag {
-            display: inline-block;
-            color: var(--accent);
+        .section-label {
+            font-size: 12px;
             font-weight: 600;
-            font-size: 0.9rem;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             text-transform: uppercase;
-            margin-bottom: 1rem;
+            color: var(--color-accent);
+            margin-bottom: 16px;
         }
 
         .section-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 1rem;
+            font-family: var(--font-heading);
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 400;
+            line-height: 1.2;
+            margin-bottom: 24px;
         }
 
-        .section-subtitle {
-            font-size: 1.1rem;
-            color: var(--text-light);
+        .section-title span {
+            font-style: italic;
+            color: var(--color-text-secondary);
+        }
+
+        .section-desc {
+            font-size: 17px;
+            color: var(--color-text-secondary);
             max-width: 600px;
-            margin: 0 auto;
+            line-height: 1.8;
         }
 
-        .features-grid {
+        /* Concept Section */
+        .concept {
+            background: var(--color-white);
+        }
+
+        .concept-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
         }
 
-        .feature-card {
-            background: var(--white);
-            padding: 2.5rem;
-            border-radius: 12px;
-            text-align: center;
-            transition: var(--transition);
-            box-shadow: var(--shadow);
+        .concept-image {
             position: relative;
+            aspect-ratio: 4/5;
             overflow: hidden;
         }
 
-        .feature-card::before {
+        .concept-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s var(--transition-smooth);
+        }
+
+        .concept-image:hover img {
+            transform: scale(1.03);
+        }
+
+        .concept-image::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent), var(--gold));
-            transform: scaleX(0);
-            transition: var(--transition);
+            inset: 24px;
+            border: 1px solid var(--color-accent);
+            z-index: 10;
+            pointer-events: none;
+            opacity: 0.6;
         }
 
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-hover);
+        .concept-content {
+            padding-right: 40px;
         }
 
-        .feature-card:hover::before {
-            transform: scaleX(1);
+        .concept-text {
+            font-size: 18px;
+            line-height: 1.9;
+            color: var(--color-text-secondary);
+            margin-bottom: 48px;
         }
 
-        .feature-icon {
-            width: 70px;
-            height: 70px;
-            background: linear-gradient(135deg, rgba(233, 69, 96, 0.1), rgba(212, 165, 116, 0.1));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1.5rem;
-            font-size: 1.8rem;
-            color: var(--accent);
+        .concept-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            padding-top: 48px;
+            border-top: 1px solid var(--color-border);
         }
 
-        .feature-title {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 0.75rem;
+        .stat-number {
+            font-family: var(--font-heading);
+            font-size: 48px;
+            font-weight: 400;
+            color: var(--color-accent);
+            margin-bottom: 8px;
         }
 
-        .feature-desc {
-            color: var(--text-light);
-            font-size: 0.95rem;
-            line-height: 1.7;
+        .stat-label {
+            font-size: 13px;
+            color: var(--color-text-muted);
+            letter-spacing: 1px;
+            text-transform: uppercase;
         }
 
         /* Products Section */
         .products {
-            padding: 6rem 0;
-            background: var(--white);
+            background: var(--color-bg);
+        }
+
+        .products-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 80px;
+        }
+
+        .view-all {
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--color-text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.3s;
+        }
+
+        .view-all:hover {
+            color: var(--color-accent);
         }
 
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2.5rem;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
         }
 
         .product-card {
-            background: var(--white);
-            border-radius: 16px;
+            background: var(--color-white);
             overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            border: 1px solid rgba(0,0,0,0.05);
+            transition: all 0.5s var(--transition-smooth);
+            cursor: pointer;
         }
 
         .product-card:hover {
@@ -465,16 +431,16 @@
         }
 
         .product-image {
-            position: relative;
-            height: 250px;
+            aspect-ratio: 4/3;
             overflow: hidden;
+            position: relative;
         }
 
         .product-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: var(--transition);
+            transition: transform 0.8s var(--transition-smooth);
         }
 
         .product-card:hover .product-image img {
@@ -483,247 +449,328 @@
 
         .product-badge {
             position: absolute;
-            top: 1rem;
-            left: 1rem;
-            background: var(--accent);
-            color: var(--white);
-            padding: 0.4rem 1rem;
-            border-radius: 50px;
-            font-size: 0.8rem;
+            top: 20px;
+            left: 20px;
+            padding: 8px 16px;
+            background: var(--color-accent);
+            color: var(--color-white);
+            font-size: 11px;
             font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
         }
 
-        .product-badge.featured {
-            background: var(--gold);
-            color: var(--primary);
+        .product-info {
+            padding: 32px;
         }
 
-        .product-content {
-            padding: 1.5rem 2rem 2rem;
+        .product-category {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--color-accent);
+            margin-bottom: 12px;
         }
 
-        .product-title {
-            font-size: 1.35rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 0.5rem;
+        .product-name {
+            font-family: var(--font-heading);
+            font-size: 24px;
+            font-weight: 500;
+            margin-bottom: 16px;
         }
 
         .product-specs {
             display: flex;
-            gap: 1rem;
-            margin-bottom: 1rem;
-            flex-wrap: wrap;
+            gap: 24px;
+            margin-bottom: 20px;
         }
 
-        .product-spec {
-            font-size: 0.85rem;
-            color: var(--text-light);
-            background: var(--bg-light);
-            padding: 0.3rem 0.8rem;
-            border-radius: 4px;
+        .spec {
+            font-size: 13px;
+            color: var(--color-text-muted);
         }
 
-        .product-desc {
-            color: var(--text-light);
-            font-size: 0.95rem;
-            line-height: 1.7;
-            margin-bottom: 1.5rem;
+        .spec-value {
+            color: var(--color-text);
+            font-weight: 500;
         }
 
-        .product-link {
-            color: var(--accent);
+        .product-price {
+            font-size: 14px;
+            color: var(--color-text-secondary);
+            padding-top: 20px;
+            border-top: 1px solid var(--color-border);
+        }
+
+        .product-price strong {
+            color: var(--color-text);
+            font-size: 20px;
             font-weight: 600;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: var(--transition);
         }
 
-        .product-link:hover {
-            gap: 0.75rem;
+        /* Features Section */
+        .features {
+            background: var(--color-bg-alt);
+            padding: 120px 0;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 48px;
+        }
+
+        .feature {
+            padding: 48px;
+            text-align: center;
+            border-right: 1px solid var(--color-border);
+        }
+
+        .feature:last-child {
+            border-right: none;
+        }
+
+        .feature-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--color-border);
+            border-radius: 50%;
+            transition: all 0.4s;
+        }
+
+        .feature:hover .feature-icon {
+            border-color: var(--color-accent);
+            background: var(--color-accent);
+        }
+
+        .feature-icon svg {
+            width: 28px;
+            height: 28px;
+            stroke: var(--color-text);
+            transition: stroke 0.4s;
+        }
+
+        .feature:hover .feature-icon svg {
+            stroke: var(--color-white);
+        }
+
+        .feature-title {
+            font-family: var(--font-heading);
+            font-size: 20px;
+            font-weight: 500;
+            margin-bottom: 12px;
+        }
+
+        .feature-desc {
+            font-size: 14px;
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            background: var(--color-white);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            grid-template-rows: repeat(2, 300px);
+            gap: 16px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .gallery-item:first-child {
+            grid-row: span 2;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s var(--transition-smooth);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+            opacity: 0;
+            transition: opacity 0.4s;
+            display: flex;
+            align-items: flex-end;
+            padding: 24px;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-title {
+            color: var(--color-white);
+            font-family: var(--font-heading);
+            font-size: 20px;
+            font-weight: 500;
         }
 
         /* CTA Section */
         .cta {
-            padding: 6rem 0;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-            position: relative;
-            overflow: hidden;
+            background: var(--color-text);
+            color: var(--color-white);
+            text-align: center;
+            padding: 140px 48px;
         }
 
-        .cta::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 600px;
-            height: 600px;
-            background: var(--accent);
-            opacity: 0.1;
-            border-radius: 50%;
-        }
-
-        .cta-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            position: relative;
-            z-index: 2;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .cta-content {
-            color: var(--white);
+        .cta-label {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--color-accent);
+            margin-bottom: 24px;
         }
 
         .cta-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            line-height: 1.3;
+            font-family: var(--font-heading);
+            font-size: clamp(36px, 5vw, 56px);
+            font-weight: 400;
+            margin-bottom: 32px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .cta-subtitle {
-            font-size: 1.1rem;
+        .cta-desc {
+            font-size: 17px;
             color: rgba(255,255,255,0.7);
-            margin-bottom: 2rem;
+            max-width: 500px;
+            margin: 0 auto 48px;
             line-height: 1.8;
         }
 
-        .cta-features {
+        .cta-buttons {
             display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        .cta-feature {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            color: rgba(255,255,255,0.9);
-        }
-
-        .cta-feature-icon {
-            width: 24px;
-            height: 24px;
-            background: var(--accent);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
+            gap: 20px;
             justify-content: center;
-            font-size: 0.8rem;
         }
 
-        .cta-form {
-            background: var(--white);
-            padding: 2.5rem;
-            border-radius: 16px;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
-        }
-
-        .form-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group {
-            margin-bottom: 1.25rem;
-        }
-
-        .form-group label {
-            display: block;
-            font-size: 0.9rem;
-            font-weight: 500;
-            color: var(--text);
-            margin-bottom: 0.5rem;
-        }
-
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            width: 100%;
-            padding: 0.875rem 1rem;
-            border: 2px solid #e5e7eb;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: var(--transition);
-            font-family: inherit;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus,
-        .form-group select:focus {
-            outline: none;
-            border-color: var(--accent);
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 100px;
-        }
-
-        .form-submit {
-            width: 100%;
-            padding: 1rem;
-            background: var(--accent);
-            color: var(--white);
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
+        .btn {
+            padding: 16px 36px;
+            font-size: 13px;
             font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.4s;
             cursor: pointer;
-            transition: var(--transition);
+            border: none;
         }
 
-        .form-submit:hover {
-            background: var(--accent-hover);
+        .btn-primary {
+            background: var(--color-accent);
+            color: var(--color-white);
+        }
+
+        .btn-primary:hover {
+            background: var(--color-accent-dark);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--color-white);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .btn-secondary:hover {
+            background: var(--color-white);
+            color: var(--color-text);
         }
 
         /* Footer */
         .footer {
-            background: var(--primary);
-            color: rgba(255,255,255,0.8);
-            padding: 4rem 0 2rem;
-        }
-
-        .footer-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 2rem;
+            background: var(--color-bg-alt);
+            padding: 80px 48px 40px;
         }
 
         .footer-grid {
             display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 3rem;
-            margin-bottom: 3rem;
+            grid-template-columns: 2fr repeat(3, 1fr);
+            gap: 60px;
+            max-width: 1400px;
+            margin: 0 auto 80px;
         }
 
-        .footer-brand .logo {
-            margin-bottom: 1rem;
+        .footer-brand {
+            max-width: 320px;
         }
 
-        .footer-brand p {
-            font-size: 0.95rem;
+        .footer-logo {
+            font-family: var(--font-heading);
+            font-size: 28px;
+            font-weight: 600;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+        }
+
+        .footer-desc {
+            font-size: 14px;
+            color: var(--color-text-secondary);
             line-height: 1.8;
-            margin-bottom: 1.5rem;
+            margin-bottom: 24px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 16px;
+        }
+
+        .footer-social a {
+            width: 44px;
+            height: 44px;
+            border: 1px solid var(--color-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .footer-social a:hover {
+            background: var(--color-accent);
+            border-color: var(--color-accent);
+        }
+
+        .footer-social svg {
+            width: 18px;
+            height: 18px;
+            stroke: var(--color-text);
+        }
+
+        .footer-social a:hover svg {
+            stroke: var(--color-white);
         }
 
         .footer-title {
-            font-size: 1rem;
-            font-weight: 700;
-            color: var(--white);
-            margin-bottom: 1.5rem;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            margin-bottom: 24px;
         }
 
         .footer-links {
@@ -731,288 +778,412 @@
         }
 
         .footer-links li {
-            margin-bottom: 0.75rem;
+            margin-bottom: 12px;
         }
 
         .footer-links a {
-            color: rgba(255,255,255,0.7);
+            font-size: 14px;
+            color: var(--color-text-secondary);
             text-decoration: none;
-            font-size: 0.95rem;
-            transition: var(--transition);
+            transition: color 0.3s;
         }
 
         .footer-links a:hover {
-            color: var(--accent);
-        }
-
-        .footer-contact p {
-            margin-bottom: 0.75rem;
-            font-size: 0.95rem;
+            color: var(--color-accent);
         }
 
         .footer-bottom {
-            border-top: 1px solid rgba(255,255,255,0.1);
-            padding-top: 2rem;
-            text-align: center;
-            font-size: 0.9rem;
-            color: rgba(255,255,255,0.5);
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-top: 40px;
+            border-top: 1px solid var(--color-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            color: var(--color-text-muted);
         }
 
-        /* Responsive Design */
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Responsive */
         @media (max-width: 1024px) {
-            .hero-container,
-            .cta-container {
+            .section {
+                padding: 80px 32px;
+            }
+
+            .nav {
+                padding: 20px 32px;
+            }
+
+            .nav.scrolled {
+                padding: 16px 32px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .concept-grid {
                 grid-template-columns: 1fr;
-                gap: 3rem;
+                gap: 48px;
             }
 
-            .hero-image {
-                order: -1;
+            .concept-content {
+                padding-right: 0;
             }
 
-            .cta-form {
-                max-width: 500px;
-                margin: 0 auto;
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .feature:nth-child(2) {
+                border-right: none;
+            }
+
+            .feature:nth-child(1),
+            .feature:nth-child(2) {
+                border-bottom: 1px solid var(--color-border);
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: repeat(3, 250px);
+            }
+
+            .gallery-item:first-child {
+                grid-row: span 1;
+                grid-column: span 2;
             }
 
             .footer-grid {
-                grid-template-columns: 1fr 1fr;
+                grid-template-columns: repeat(2, 1fr);
             }
         }
 
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 70px;
-                left: 0;
-                right: 0;
-                background: var(--primary);
-                flex-direction: column;
-                padding: 2rem;
-                gap: 1.5rem;
+        @media (max-width: 640px) {
+            .section {
+                padding: 60px 20px;
             }
 
-            .nav-links.active {
-                display: flex;
+            .nav {
+                padding: 16px 20px;
             }
 
-            .mobile-menu-btn {
-                display: block;
+            .nav.scrolled {
+                padding: 12px 20px;
             }
 
             .hero-title {
-                font-size: 2.25rem;
+                font-size: 36px;
             }
 
-            .hero-subtitle {
-                font-size: 1rem;
-            }
-
-            .hero-stats {
-                gap: 2rem;
-            }
-
-            .stat-number {
-                font-size: 2rem;
-            }
-
-            .section-title {
-                font-size: 1.75rem;
+            .concept-stats {
+                grid-template-columns: 1fr;
+                gap: 24px;
             }
 
             .products-grid {
                 grid-template-columns: 1fr;
             }
 
-            .cta-title {
-                font-size: 1.75rem;
+            .products-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 24px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .feature {
+                border-right: none;
+                border-bottom: 1px solid var(--color-border);
+            }
+
+            .feature:last-child {
+                border-bottom: none;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: repeat(4, 200px);
+            }
+
+            .gallery-item:first-child {
+                grid-column: span 1;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
             }
 
             .footer-grid {
                 grid-template-columns: 1fr;
-                gap: 2rem;
+                gap: 40px;
             }
 
-            .hero-buttons {
+            .footer-bottom {
                 flex-direction: column;
+                gap: 16px;
+                text-align: center;
             }
-
-            .btn {
-                width: 100%;
-                justify-content: center;
-            }
-        }
-
-        /* Animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
         }
     </style>
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar">
-        <div class="navbar-container">
-            <a href="#" class="logo">
-                <div class="logo-icon">🏠</div>
-                <span>双翼拓展箱</span>
-            </a>
-            <ul class="nav-links">
-                <li><a href="#home">首页</a></li>
-                <li><a href="#features">产品特点</a></li>
-                <li><a href="#products">产品系列</a></li>
-                <li><a href="#about">关于我们</a></li>
-                <li><a href="#contact" class="nav-cta">立即咨询</a></li>
-            </ul>
-            <button class="mobile-menu-btn">☰</button>
-        </div>
+    <nav class="nav" id="nav">
+        <a href="#" class="nav-logo">WINGBOX</a>
+        <ul class="nav-links">
+            <li><a href="#products">Products</a></li>
+            <li><a href="#concept">Concept</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact" class="nav-cta">Get Quote</a></li>
+        </ul>
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero" id="home">
+    <section class="hero">
+        <div class="hero-image"></div>
         <div class="hero-overlay"></div>
-        <div class="hero-container">
-            <div class="hero-content">
-                <span class="hero-badge">🏆 行业领先的模块化房屋解决方案</span>
-                <h1 class="hero-title">双翼拓展箱<br>重新定义移动空间</h1>
-                <p class="hero-subtitle">创新可折叠拓展设计，20尺/30尺/40尺多种规格，满足工地宿舍、景区民宿、临时办公等多场景需求</p>
-                <div class="hero-stats">
-                    <div class="stat-item">
-                        <div class="stat-number">20+</div>
-                        <div class="stat-label">款式选择</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">3X</div>
-                        <div class="stat-label">空间拓展</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">24H</div>
-                        <div class="stat-label">快速安装</div>
-                    </div>
-                </div>
-                <div class="hero-buttons">
-                    <a href="#products" class="btn btn-primary">探索产品系列 →</a>
-                    <a href="#contact" class="btn btn-secondary">获取报价方案</a>
-                </div>
-            </div>
-            <div class="hero-image">
-                <img src="assets/双翼拓展箱，精美视频和图片/20尺，坡顶，外面金属雕花板，正面图.jpg" alt="双翼拓展箱产品展示">
-                <div class="hero-image-badge">
-                    <span>热销产品</span>
-                    <strong>20尺坡顶拓展箱</strong>
-                </div>
-            </div>
+        <div class="hero-content">
+            <p class="hero-label">Expandable Living Solutions</p>
+            <h1 class="hero-title">Space That <span>Adapts</span> to You</h1>
+            <p class="hero-subtitle">Revolutionary folding container homes that double your living space. Engineered for modern life, delivered ready to inhabit.</p>
+            <a href="#products" class="hero-cta">
+                Explore Collection
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+            </a>
         </div>
-        <div class="scroll-indicator">
-            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M7 13l5 5 5-5M7 6l5 5 5-5"/>
-            </svg>
+        <div class="hero-scroll">
+            <span>Scroll</span>
+            <div class="hero-scroll-line"></div>
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section class="features" id="features">
-        <div class="container">
-            <div class="section-header fade-in">
-                <span class="section-tag">核心优势</span>
-                <h2 class="section-title">为什么选择双翼拓展箱</h2>
-                <p class="section-subtitle">融合工业级品质与现代设计理念，打造高品质移动空间解决方案</p>
+    <!-- Concept Section -->
+    <section class="section concept" id="concept">
+        <div class="concept-grid">
+            <div class="concept-image">
+                <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800&q=80" alt="WINGBOX Interior">
             </div>
-            <div class="features-grid">
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">📦</div>
-                    <h3 class="feature-title">可折叠/可拓展设计</h3>
-                    <p class="feature-desc">创新的双翼展开结构，展开后空间可达原来的3倍，收起后体积紧凑，大幅提升运输效率</p>
-                </div>
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">🚚</div>
-                    <h3 class="feature-title">运输安装便捷</h3>
-                    <p class="feature-desc">标准化集装箱尺寸，适配常规运输车辆，专业团队24小时内完成现场安装，即装即用</p>
-                </div>
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">🎨</div>
-                    <h3 class="feature-title">多种外观风格</h3>
-                    <p class="feature-desc">3D木纹、金属雕花、法式风格等多种外墙选择，满足不同场景的视觉需求</p>
-                </div>
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">✨</div>
-                    <h3 class="feature-title">内部精装修</h3>
-                    <p class="feature-desc">碳晶板、金属雕花板等高端内饰材料，配备完整卫浴、厨房、卧室功能区</p>
-                </div>
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">🏢</div>
-                    <h3 class="feature-title">适用多种场景</h3>
-                    <p class="feature-desc">工地宿舍、景区民宿、临时办公、应急住房，灵活应对各类空间需求</p>
+            <div class="concept-content">
+                <p class="section-label">The Concept</p>
+                <h2 class="section-title">Less Transport, <span>More Space</span></h2>
+                <p class="concept-text">WINGBOX represents a paradigm shift in modular living. Our patented dual-wing expansion system transforms a standard shipping container into a spacious, fully-functional living environment. The innovative folding mechanism reduces transport costs by 60% while providing double the interior space upon deployment.</p>
+                <div class="concept-stats">
+                    <div class="stat">
+                        <div class="stat-number">2x</div>
+                        <div class="stat-label">Space Expansion</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">60%</div>
+                        <div class="stat-label">Transport Savings</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">48h</div>
+                        <div class="stat-label">Setup Time</div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Products Section -->
-    <section class="products" id="products">
-        <div class="container">
-            <div class="section-header fade-in">
-                <span class="section-tag">产品系列</span>
-                <h2 class="section-title">全系列产品展示</h2>
-                <p class="section-subtitle">从20尺到40尺，多种规格、多种风格，满足您的个性化需求</p>
+    <section class="section products" id="products">
+        <div class="products-header">
+            <div class="section-header">
+                <p class="section-label">Collection</p>
+                <h2 class="section-title">Designed for <span>Every Need</span></h2>
             </div>
-            <div class="products-grid">
-                <!-- 20尺系列 -->
-                <div class="product-card fade-in">
-                    <div class="product-image">
-                        <img src="assets/双翼拓展箱，精美视频和图片/20尺，3D木纹铁皮墙板，正视图.jpg" alt="20尺双翼拓展箱">
-                        <span class="product-badge featured">热销爆款</span>
-                    </div>
-                    <div class="product-content">
-                        <h3 class="product-title">20尺双翼拓展箱</h3>
-                        <div class="product-specs">
-                            <span class="product-spec">📐 标准集装箱尺寸</span>
-                            <span class="product-spec">🎨 8+外观风格</span>
-                        </div>
-                        <p class="product-desc">主打产品系列，包含3D木纹、双拼外墙、坡顶款、平顶款、白色飓风款等多种风格选择，性价比之选</p>
-                        <a href="#" class="product-link">查看详情 →</a>
-                    </div>
+            <a href="products.html" class="view-all">
+                View All Products
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+            </a>
+        </div>
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="product-image">
+                    <span class="product-badge">Bestseller</span>
+                    <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=600&q=80" alt="WINGBOX 20ft">
                 </div>
-
-                <!-- 30尺系列 -->
-                <div class="product-card fade-in">
-                    <div class="product-image">
-                        <img src="assets/双翼拓展箱，精美视频和图片/30尺，红鸡翅木，金属雕花板，正视图.jpg" alt="30尺双翼拓展箱">
-                    </div>
-                    <div class="product-content">
-                        <h3 class="product-title">30尺双翼拓展箱</h3>
-                        <div class="product-specs">
-                            <span class="product-spec">📐 超大空间</span>
-                            <span class="product-spec">🚪 谷仓门设计</span>
+                <div class="product-info">
+                    <p class="product-category">Compact Series</p>
+                    <h3 class="product-name">WINGBOX 20</h3>
+                    <div class="product-specs">
+                        <div class="spec">
+                            <div class="spec-value">20ft</div>
+                            <div>Length</div>
                         </div>
-                        <p class="product-desc">红鸡翅木配色搭配金属雕花板内饰，独特谷仓门设计，空间更宽敞，适合家庭或团队使用</p>
-                        <a href="#" class="product-link">查看详情 →</a>
+                        <div class="spec">
+                            <div class="spec-value">28m²</div>
+                            <div>Expanded</div>
+                        </div>
+                        <div class="spec">
+                            <div class="spec-value">2-4</div>
+                            <div>Persons</div>
+                        </div>
                     </div>
+                    <div class="product-price">From <strong>$3,800</strong></div>
                 </div>
+            </div>
 
-                <!-- 40尺系列 -->
-                <div class="product-card fade-in">
-                    <div class="product-image">
-                        <img src="assets/双翼拓展箱，精美视频和图片/40尺，法式风，正视图.jpg" alt="40尺双翼拓展箱">
-                        <span class="product-badge">豪华配置</span>
-                    </div>
-                    <div class="product-content">
-                        <h3 class="product-title">40尺双翼拓展箱</h3>
-                        <div class="product-specs">
-                            <span class="product-spec">🏠 完整厨卫</span>
-                            <span class="product-spec">🛁 干湿分离</span>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1600573472550-8090b5e0745e?w=600&q=80" alt="WINGBOX 30ft">
+                </div>
+                <div class="product-info">
+                    <p class="product-category">Mid Series</p>
+                    <h3 class="product-name">WINGBOX 30</h3>
+                    <div class="product-specs">
+                        <div class="spec">
+                            <div class="spec-value">30ft</div>
+                            <div>Length</div>
                         </div>
-                        <p class="product-desc">坡顶款与法式风款可选，配备独立厨房、干湿分离卫生间，豪华配置，高端享受</p>
-                        <a href="#" class="product-link">查看详情 →</a>
+                        <div class="spec">
+                            <div class="spec-value">42m²</div>
+                            <div>Expanded</div>
+                        </div>
+                        <div class="spec">
+                            <div class="spec-value">4-6</div>
+                            <div>Persons</div>
+                        </div>
                     </div>
+                    <div class="product-price">From <strong>$8,200</strong></div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <span class="product-badge">Premium</span>
+                    <img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=600&q=80" alt="WINGBOX 40ft">
+                </div>
+                <div class="product-info">
+                    <p class="product-category">Flagship Series</p>
+                    <h3 class="product-name">WINGBOX 40</h3>
+                    <div class="product-specs">
+                        <div class="spec">
+                            <div class="spec-value">40ft</div>
+                            <div>Length</div>
+                        </div>
+                        <div class="spec">
+                            <div class="spec-value">56m²</div>
+                            <div>Expanded</div>
+                        </div>
+                        <div class="spec">
+                            <div class="spec-value">6-8</div>
+                            <div>Persons</div>
+                        </div>
+                    </div>
+                    <div class="product-price">From <strong>$12,500</strong></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="features-grid">
+            <div class="feature">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 3v18M3 12h18M5 5l14 14M19 5L5 19"/>
+                    </svg>
+                </div>
+                <h3 class="feature-title">Dual-Wing Design</h3>
+                <p class="feature-desc">Patented folding mechanism expands interior space by 200%</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M3 21h18M5 21V7l8-4 8 4v14M8 21v-8a2 2 0 012-2h4a2 2 0 012 2v8"/>
+                    </svg>
+                </div>
+                <h3 class="feature-title">Ready to Live</h3>
+                <p class="feature-desc">Fully equipped with kitchen, bathroom, and climate control</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                    </svg>
+                </div>
+                <h3 class="feature-title">Rapid Deploy</h3>
+                <p class="feature-desc">From delivery to occupancy in 48 hours</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064"/>
+                    </svg>
+                </div>
+                <h3 class="feature-title">Global Shipping</h3>
+                <p class="feature-desc">Worldwide delivery to 50+ countries</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="section gallery" id="gallery">
+        <div class="section-header">
+            <p class="section-label">Portfolio</p>
+            <h2 class="section-title">See It in <span>Action</span></h2>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80" alt="Exterior View">
+                <div class="gallery-overlay">
+                    <h4 class="gallery-title">Modern Exterior</h4>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=600&q=80" alt="Living Space">
+                <div class="gallery-overlay">
+                    <h4 class="gallery-title">Living Area</h4>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1600573472550-8090b5e0745e?w=600&q=80" alt="Bedroom">
+                <div class="gallery-overlay">
+                    <h4 class="gallery-title">Bedroom</h4>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=600&q=80" alt="Kitchen">
+                <div class="gallery-overlay">
+                    <h4 class="gallery-title">Kitchen</h4>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=600&q=80" alt="Bathroom">
+                <div class="gallery-overlay">
+                    <h4 class="gallery-title">Bathroom</h4>
                 </div>
             </div>
         </div>
@@ -1020,113 +1191,92 @@
 
     <!-- CTA Section -->
     <section class="cta" id="contact">
-        <div class="cta-container">
-            <div class="cta-content">
-                <h2 class="cta-title">立即获取专属方案</h2>
-                <p class="cta-subtitle">无论您是建筑公司、景区开发商还是个人买家，我们都能为您提供量身定制的拓展箱解决方案。专业团队一对一服务，从选型到安装全程支持。</p>
-                <div class="cta-features">
-                    <div class="cta-feature">
-                        <div class="cta-feature-icon">✓</div>
-                        <span>免费现场勘查与方案设计</span>
-                    </div>
-                    <div class="cta-feature">
-                        <div class="cta-feature-icon">✓</div>
-                        <span>工厂直供，价格透明</span>
-                    </div>
-                    <div class="cta-feature">
-                        <div class="cta-feature-icon">✓</div>
-                        <span>全国配送，上门安装</span>
-                    </div>
-                    <div class="cta-feature">
-                        <div class="cta-feature-icon">✓</div>
-                        <span>质保服务，售后无忧</span>
-                    </div>
-                </div>
-            </div>
-            <div class="cta-form">
-                <h3 class="form-title">留下您的需求</h3>
-                <form>
-                    <div class="form-group">
-                        <label for="name">您的姓名</label>
-                        <input type="text" id="name" placeholder="请输入您的姓名" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">联系电话</label>
-                        <input type="tel" id="phone" placeholder="请输入您的手机号" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="type">需求类型</label>
-                        <select id="type" required>
-                            <option value="">请选择需求类型</option>
-                            <option value="dormitory">工地宿舍</option>
-                            <option value="homestay">景区民宿</option>
-                            <option value="office">临时办公</option>
-                            <option value="emergency">应急住房</option>
-                            <option value="other">其他</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">详细需求</label>
-                        <textarea id="message" placeholder="请描述您的具体需求，如数量、规格、使用场景等"></textarea>
-                    </div>
-                    <button type="submit" class="form-submit">立即提交咨询</button>
-                </form>
-            </div>
+        <p class="cta-label">Start Your Project</p>
+        <h2 class="cta-title">Ready to Expand Your Possibilities?</h2>
+        <p class="cta-desc">Get a personalized quote for your expandable container home. Our team is here to guide you every step of the way.</p>
+        <div class="cta-buttons">
+            <a href="contact.html" class="btn btn-primary">Request Quote</a>
+            <a href="products.html" class="btn btn-secondary">View Products</a>
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <a href="#" class="logo">
-                        <div class="logo-icon">🏠</div>
-                        <span>双翼拓展箱</span>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="footer-logo">WINGBOX</div>
+                <p class="footer-desc">Redefining modular living with innovative expandable container solutions. Engineered for life, designed for you.</p>
+                <div class="footer-social">
+                    <a href="#" aria-label="Instagram">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+                            <rect x="2" y="2" width="20" height="20" rx="5"/>
+                            <circle cx="12" cy="12" r="4"/>
+                            <circle cx="18" cy="6" r="1.5" fill="currentColor" stroke="none"/>
+                        </svg>
                     </a>
-                    <p>专注于模块化移动房屋研发与制造，致力于为客户提供高品质、高性价比的拓展箱解决方案。产品远销海内外，深受客户信赖。</p>
-                </div>
-                <div class="footer-nav">
-                    <h4 class="footer-title">快速导航</h4>
-                    <ul class="footer-links">
-                        <li><a href="#home">首页</a></li>
-                        <li><a href="#features">产品特点</a></li>
-                        <li><a href="#products">产品系列</a></li>
-                        <li><a href="#about">关于我们</a></li>
-                    </ul>
-                </div>
-                <div class="footer-nav">
-                    <h4 class="footer-title">产品中心</h4>
-                    <ul class="footer-links">
-                        <li><a href="#">20尺拓展箱</a></li>
-                        <li><a href="#">30尺拓展箱</a></li>
-                        <li><a href="#">40尺拓展箱</a></li>
-                        <li><a href="#">折叠房系列</a></li>
-                    </ul>
-                </div>
-                <div class="footer-contact">
-                    <h4 class="footer-title">联系我们</h4>
-                    <p>📞 咨询热线：400-XXX-XXXX</p>
-                    <p>📧 邮箱：contact@shuangyi.com</p>
-                    <p>📍 地址：中国·生产基地</p>
-                    <p>🕐 工作时间：周一至周日 8:00-20:00</p>
+                    <a href="#" aria-label="LinkedIn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+                            <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/>
+                            <rect x="2" y="9" width="4" height="12"/>
+                            <circle cx="4" cy="4" r="2"/>
+                        </svg>
+                    </a>
+                    <a href="#" aria-label="YouTube">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+                            <path d="M22.54 6.42a2.78 2.78 0 00-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 00-1.94 2A29 29 0 001 11.75a29 29 0 00.46 5.33A2.78 2.78 0 003.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 001.94-2 29 29 0 00.46-5.33 29 29 0 00-.46-5.33z"/>
+                            <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/>
+                        </svg>
+                    </a>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 双翼拓展箱 版权所有 | 专业模块化房屋解决方案提供商</p>
+            <div class="footer-col">
+                <h4 class="footer-title">Products</h4>
+                <ul class="footer-links">
+                    <li><a href="#">WINGBOX 20</a></li>
+                    <li><a href="#">WINGBOX 30</a></li>
+                    <li><a href="#">WINGBOX 40</a></li>
+                    <li><a href="#">Folding Series</a></li>
+                </ul>
             </div>
+            <div class="footer-col">
+                <h4 class="footer-title">Solutions</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Residential</a></li>
+                    <li><a href="#">Commercial</a></li>
+                    <li><a href="#">Hospitality</a></li>
+                    <li><a href="#">Emergency</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4 class="footer-title">Company</h4>
+                <ul class="footer-links">
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Projects</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Careers</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 WINGBOX. All rights reserved.</p>
+            <p>Designed with precision. Built to last.</p>
         </div>
     </footer>
 
     <script>
-        // Mobile menu toggle
-        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
-            document.querySelector('.nav-links').classList.toggle('active');
+        // Navigation scroll effect
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
         });
 
-        // Smooth scroll
+        // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
+            anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
@@ -1134,40 +1284,8 @@
                         behavior: 'smooth',
                         block: 'start'
                     });
-                    // Close mobile menu
-                    document.querySelector('.nav-links').classList.remove('active');
                 }
             });
-        });
-
-        // Navbar scroll effect
-        window.addEventListener('scroll', function() {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                navbar.style.background = 'rgba(26, 26, 46, 0.98)';
-            } else {
-                navbar.style.background = 'rgba(26, 26, 46, 0.95)';
-            }
-        });
-
-        // Fade in animation
-        const fadeElements = document.querySelectorAll('.fade-in');
-        const fadeObserver = new IntersectionObserver((entries) => {
-            entries.forEach((entry, index) => {
-                if (entry.isIntersecting) {
-                    setTimeout(() => {
-                        entry.target.classList.add('visible');
-                    }, index * 100);
-                }
-            });
-        }, { threshold: 0.1 });
-
-        fadeElements.forEach(el => fadeObserver.observe(el));
-
-        // Form submission
-        document.querySelector('form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('感谢您的咨询！我们的专业顾问将在24小时内与您联系。');
         });
     </script>
 </body>
