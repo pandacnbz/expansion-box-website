@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>产品中心 - 双翼拓展箱 | 模块化移动房屋解决方案</title>
+    <meta name="description" content="双翼拓展箱全系列产品展示，20尺/30尺/40尺多种规格，木纹、金属雕花板、法式风格等多种外观可选。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a1a2e;
+            --primary-light: #16213e;
+            --accent: #e94560;
+            --accent-hover: #c73a52;
+            --gold: #d4a574;
+            --text: #333;
+            --text-light: #666;
+            --bg-light: #f8f9fa;
+            --white: #fff;
+            --shadow: 0 4px 20px rgba(0,0,0,0.1);
+            --shadow-hover: 0 8px 30px rgba(0,0,0,0.15);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(10px);
+            transition: var(--transition);
+        }
+
+        .navbar-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--white);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: rgba(255,255,255,0.9);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--gold);
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--gold);
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: var(--white);
+            padding: 150px 2rem 80px;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Products Section */
+        .products-section {
+            padding: 80px 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+
+        /* Product Category */
+        .product-category {
+            margin-bottom: 80px;
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--gold);
+        }
+
+        .category-header h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+        }
+
+        .category-badge {
+            background: var(--accent);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* Product Grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            font-size: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image::before {
+            content: '🏠';
+            font-size: 4rem;
+            opacity: 0.3;
+        }
+
+        .product-tag {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--gold);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .product-tag.hot {
+            background: var(--accent);
+        }
+
+        .product-tag.new {
+            background: #10b981;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-info h4 {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .product-specs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .spec-item {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .product-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-tag {
+            background: var(--bg-light);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            color: var(--text);
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .product-price span {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            font-weight: 400;
+        }
+
+        .product-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            text-align: center;
+            flex: 1;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Features Banner */
+        .features-banner {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 60px 2rem;
+            margin-top: 60px;
+        }
+
+        .features-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-box {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-box h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-box p {
+            opacity: 0.8;
+            font-size: 0.95rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--primary);
+            color: white;
+            padding: 60px 2rem 30px;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+
+        .footer-section h4 {
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-section a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.8rem;
+            transition: var(--transition);
+        }
+
+        .footer-section a:hover {
+            color: var(--gold);
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 3rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            color: rgba(255,255,255,0.6);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .page-header {
+                padding: 120px 1rem 60px;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="logo">
+                <span>🏠</span>
+                <span>双翼拓展箱</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="products.html" class="active">产品中心</a></li>
+                <li><a href="about.html">关于我们</a></li>
+                <li><a href="contact.html">联系我们</a></li>
+            </ul>
+            <button class="mobile-menu-btn">☰</button>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <h1>产品中心</h1>
+        <p>探索我们的全系列产品，从经济实惠的20尺标准款到豪华配置的40尺旗舰款，满足您的各种需求</p>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products-section">
+        
+        <!-- 20尺系列 -->
+        <div class="product-category">
+            <div class="category-header">
+                <h3>20尺双翼拓展箱</h3>
+                <span class="category-badge">主打产品</span>
+            </div>
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <span class="product-tag hot">热销</span>
+                    </div>
+                    <div class="product-info">
+                        <h4>3D木纹铁皮墙板款</h4>
+                        <div class="product-specs">
+                            <span class="spec-item">📐 20尺标准</span>
+                            <span class="spec-item">🏠 一室一厅</span>
+                            <span class="spec-item">🚿 独立卫浴</span>
+                        </div>
+                        <div class="product-features">
+                            <span class="feature-tag">3D木纹外观</span>
+                            <span class="feature-tag">金属雕花内饰</span>
+                            <span class="feature-tag">碳晶板地面</span>
+                        </div>
+                        <div class="product-price">¥28,800 <span>起</span></div>
+                        <div class="product-actions">
+                            <a href="contact.html" class="btn btn-primary">立即询价</a>
+                            <a href="#" class="btn btn-outline">查看详情</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <span class="product-tag">双拼色</span>
+                    </div>
+                    <div class="product-info">
+                        <h4>双拼外墙颜色款</h4>
+                        <div class="product-specs">
+                            <span class="spec-item">📐 20尺标准</span>
+                            <span class="spec-item">🏠 一室一厅</span>
+                            <span class="spec-item">🚿 干湿分离</span>
+                        </div>
+                        <div class="product-features">
+                            <span class="feature-tag">双色搭配</span>
+                            <span class="feature-tag">现代简约</span>
+                            <span class="feature-tag">通铺碳晶板</span>
+                        </div>
+                        <div class="product-price">¥32,800 <span>起</span></div>
+                        <div class="product-actions">
+                            <a href="contact.html" class="btn btn-primary">立即询价</a>
+                            <a href="#" class="btn btn-outline">查看详情</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <span class="product-tag">古风</span>
+                    </div>
+                    <div class="product-info">
+                        <h4>古墙灰金属雕花板款</h4>
+                        <div class="product-specs">
+                            <span class="spec-item">📐 20尺标准</span>
+                            <span class="spec-item">🏠 一室一厅</span>
+                            <span class="spec-item">🚿 精致卫浴</span>
+                        </div>
+                        <div class="product-features">
+                            <span class="feature-tag">古墙灰外观</span>
+                            <span class="feature-tag">金属雕花板</span>
+                            <span class="feature-tag">中沟平面设计</span>
+                        </div>
+                        <div class="product-price">¥35,800 <span>起</span></div>
+                        <div class="product-actions">
+                            <a href="contact.html" class="btn btn-primary">立即询价</a>
+                            <a href="#" class="btn btn-outline">查看详情</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <span class="product-tag new">新品</span>
+                    </div>
+                    <div class="product-info">
+                        <h4>坡顶拓展款</h4>
+                        <div class="product-specs">
+                            <span class="spec-item">📐 20尺坡顶</span>
+                            <span class="spec-item">🏠 一室一厅</span>
+                            <span class="spec-item">☔ 排水优化</span>
+                        </div>
+                        <div class="product-features">
+                            <span class="feature-tag">坡顶设计</span>
+                            <span class="feature-tag">防雨防晒</span>
+                            <span class="feature-tag">外观独特</span>
+                        </div>
+                        <div class="product-price">¥38,800 <span>起</span></div>
+                        <div class="product-actions">
+                            <a href="contact.html" class="btn btn-primary">立即询价</a>
+                            <a href="#" class="btn btn-outline">查看详情</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <span class="product-tag">现代</span>
+                    </div>
+                    <div class="product-info">
+                        <h4>平顶标准款</h4>
+                        <div class="product-specs">
+                            <span class="spec-item">📐 20尺平顶</span>
+                            <span class="spec-item">🏠 一室一厅</span>
+                            <span class="spec-item">🛋️ 舒适客厅</span>
+                        </div>
+                        <div class="product-features">
+                            <span class="feature-tag">平顶设计</span>
+                            <span class="feature-tag">简约现代</span>
+                            <span class="feature-tag">经济实用</span>
+                        </div>
+                        <div class="product-price">¥26,800 <span>起</span></div>
+                        <div class="product-actions">
+                            <a href="contact.html" class="btn btn-primary">立即询价</a>
+                            <a href="#" class="btn btn-outline">查看详情</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <span class="product-tag">中式</span>
+                    </div>
+                    <div class="product-info">
+                        <h4>推拉门黄鸡翅木款</h4>
+                        <div class="product-specs">
+                            <span class="spec-item">📐 20尺标准</span>
+                            <span class="spec-item">🏠 一室一厅</span>
+                            <span class="spec-item">🚪 推拉门</span>
+                        </div>
+                        <div class="product-features">
+                            <span class="feature-tag">黄鸡翅木</span>
+                            <span class="feature-tag">推拉门设计</span>
+                            <span class="feature-tag">中式风格</span>
+                        </div>
+                        <div class="product-price">¥42,800 <span>起</span></div>
+                        <div class="product-actions">
+                            <a href="contact.html" class="btn btn-primary">立即询价</a>
+                            <a href="#" class="btn btn-outline">查看详情</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 30尺系列 -->
+        <div class="product-category">
+            <div class="category-header">
+                <h3>30尺双翼拓展箱</h3>
+                <span class="category-badge">中高端</span>
+            </div>
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <span class="product-tag">豪华</span>
+                    </div>
+                    <div class="product-info">
+                        <h4>红鸡翅木金属雕花板款</h4>
+                        <div class="product-specs">
+                            <span class="spec-item">📐 30尺加长</span>
+                            <span class="spec-item">🏠 一室一厅</span>
+                            <span class="spec-item">🍳 简易厨房</span>
+                        </div>
+                        <div class="product-features">
+                            <span class="feature-tag">红鸡翅木</span>
+                            <span class="feature-tag">更大空间</span>
+                            <span class="feature-tag">谷仓门设计</span>
+                        </div>
+                        <div class="product-price">¥58,800 <span>起</span></div>
+                        <div class="product-actions">
+                            <a href="contact.html" class="btn btn-primary">立即询价</a>
+                            <a href="#" class="btn btn-outline">查看详情</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 40尺系列 -->
+        <div class="product-category">
+            <div class="category-header">
+                <h3>40尺双翼拓展箱</h3>
+                <span class="category-badge">旗舰款</span>
+            </div>
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <span class="product-tag">坡顶</span>
+                    </div>
+                    <div class="product-info">
+                        <h4>40尺坡顶旗舰款</h4>
+                        <div class="product-specs">
+                            <span class="spec-item">📐 40尺大型</span>
+                            <span class="spec-item">🏠 两室一厅</span>
+                            <span class="spec-item">🍳 完整厨房</span>
+                        </div>
+                        <div class="product-features">
+                            <span class="feature-tag">超大空间</span>
+                            <span class="feature-tag">坡顶设计</span>
+                            <span class="feature-tag">全屋精装</span>
+                        </div>
+                        <div class="product-price">¥88,800 <span>起</span></div>
+                        <div class="product-actions">
+                            <a href="contact.html" class="btn btn-primary">立即询价</a>
+                            <a href="#" class="btn btn-outline">查看详情</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <span class="product-tag hot">法式</span>
+                    </div>
+                    <div class="product-info">
+                        <h4>法式风情款</h4>
+                        <div class="product-specs">
+                            <span class="spec-item">📐 40尺大型</span>
+                            <span class="spec-item">🏠 两室一厅</span>
+                            <span class="spec-item">🛁 干湿分离</span>
+                        </div>
+                        <div class="product-features">
+                            <span class="feature-tag">法式风格</span>
+                            <span class="feature-tag">干湿分离</span>
+                            <span class="feature-tag">高端配置</span>
+                        </div>
+                        <div class="product-price">¥98,800 <span>起</span></div>
+                        <div class="product-actions">
+                            <a href="contact.html" class="btn btn-primary">立即询价</a>
+                            <a href="#" class="btn btn-outline">查看详情</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 折叠房系列 -->
+        <div class="product-category">
+            <div class="category-header">
+                <h3>折叠房及瓦楞房</h3>
+                <span class="category-badge">便携款</span>
+            </div>
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <span class="product-tag">折叠</span>
+                    </div>
+                    <div class="product-info">
+                        <h4>标准折叠房</h4>
+                        <div class="product-specs">
+                            <span class="spec-item">📐 标准尺寸</span>
+                            <span class="spec-item">🏠 开间设计</span>
+                            <span class="spec-item">⚡ 快速部署</span>
+                        </div>
+                        <div class="product-features">
+                            <span class="feature-tag">折叠设计</span>
+                            <span class="feature-tag">运输便捷</span>
+                            <span class="feature-tag">快速搭建</span>
+                        </div>
+                        <div class="product-price">¥18,800 <span>起</span></div>
+                        <div class="product-actions">
+                            <a href="contact.html" class="btn btn-primary">立即询价</a>
+                            <a href="#" class="btn btn-outline">查看详情</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <span class="product-tag">瓦楞</span>
+                    </div>
+                    <div class="product-info">
+                        <h4>双层大瓦楞房</h4>
+                        <div class="product-specs">
+                            <span class="spec-item">📐 双层结构</span>
+                            <span class="spec-item">🏠 瓦楞墙体</span>
+                            <span class="spec-item">💪 坚固耐用</span>
+                        </div>
+                        <div class="product-features">
+                            <span class="feature-tag">双层保温</span>
+                            <span class="feature-tag">瓦楞结构</span>
+                            <span class="feature-tag">经济实用</span>
+                        </div>
+                        <div class="product-price">¥22,800 <span>起</span></div>
+                        <div class="product-actions">
+                            <a href="contact.html" class="btn btn-primary">立即询价</a>
+                            <a href="#" class="btn btn-outline">查看详情</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Banner -->
+    <section class="features-banner">
+        <div class="features-grid">
+            <div class="feature-box">
+                <div class="feature-icon">🏭</div>
+                <h4>工厂直供</h4>
+                <p>自有工厂生产，品质可控，价格更优</p>
+            </div>
+            <div class="feature-box">
+                <div class="feature-icon">🚚</div>
+                <h4>全国配送</h4>
+                <p>专业物流团队，全国范围安全送达</p>
+            </div>
+            <div class="feature-box">
+                <div class="feature-icon">🔧</div>
+                <h4>安装服务</h4>
+                <p>提供专业安装指导或上门安装服务</p>
+            </div>
+            <div class="feature-box">
+                <div class="feature-icon">🛡️</div>
+                <h4>质保承诺</h4>
+                <p>主体结构5年质保，终身维护支持</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>产品系列</h4>
+                <a href="#">20尺双翼拓展箱</a>
+                <a href="#">30尺双翼拓展箱</a>
+                <a href="#">40尺双翼拓展箱</a>
+                <a href="#">折叠房/瓦楞房</a>
+            </div>
+            <div class="footer-section">
+                <h4>应用场景</h4>
+                <a href="#">工地宿舍</a>
+                <a href="#">景区民宿</a>
+                <a href="#">临时办公</a>
+                <a href="#">应急住房</a>
+            </div>
+            <div class="footer-section">
+                <h4>服务支持</h4>
+                <a href="#">产品定制</a>
+                <a href="#">安装指导</a>
+                <a href="#">售后服务</a>
+                <a href="#">常见问题</a>
+            </div>
+            <div class="footer-section">
+                <h4>联系我们</h4>
+                <a href="tel:400-888-8888">📞 400-888-8888</a>
+                <a href="mailto:contact@expansionbox.com">✉️ contact@expansionbox.com</a>
+                <a href="#">📍 中国·生产基地</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 双翼拓展箱. All Rights Reserved. | 模块化移动房屋解决方案提供商</p>
+        </div>
+    </footer>
+</body>
+</html>
