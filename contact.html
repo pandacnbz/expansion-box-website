@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>联系我们 - 双翼拓展箱 | 获取报价与咨询</title>
+    <meta name="description" content="联系双翼拓展箱获取产品报价、定制咨询、技术支持。专业团队为您提供一站式模块化房屋解决方案。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a1a2e;
+            --primary-light: #16213e;
+            --accent: #e94560;
+            --accent-hover: #c73a52;
+            --gold: #d4a574;
+            --text: #333;
+            --text-light: #666;
+            --bg-light: #f8f9fa;
+            --white: #fff;
+            --shadow: 0 4px 20px rgba(0,0,0,0.1);
+            --shadow-hover: 0 8px 30px rgba(0,0,0,0.15);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(10px);
+            transition: var(--transition);
+        }
+
+        .navbar-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--white);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: rgba(255,255,255,0.9);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--gold);
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--gold);
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: var(--white);
+            padding: 150px 2rem 80px;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 80px 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        /* Contact Info */
+        .contact-info h2 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-info > p {
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .contact-method {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: var(--bg-light);
+            border-radius: 12px;
+            transition: var(--transition);
+        }
+
+        .contact-method:hover {
+            transform: translateX(5px);
+            box-shadow: var(--shadow);
+        }
+
+        .method-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--accent), var(--gold));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .method-content h4 {
+            color: var(--primary);
+            margin-bottom: 0.3rem;
+        }
+
+        .method-content p,
+        .method-content a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .method-content a:hover {
+            color: var(--accent);
+        }
+
+        /* Working Hours */
+        .working-hours {
+            background: var(--primary);
+            color: white;
+            padding: 2rem;
+            border-radius: 16px;
+        }
+
+        .working-hours h3 {
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+
+        .hours-list {
+            list-style: none;
+        }
+
+        .hours-list li {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .hours-list li:last-child {
+            border-bottom: none;
+        }
+
+        /* Contact Form */
+        .contact-form-container {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .contact-form-container h2 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-form-container > p {
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        .form-group label .required {
+            color: var(--accent);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: var(--transition);
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(233, 69, 96, 0.3);
+        }
+
+        /* Map Section */
+        .map-section {
+            background: var(--bg-light);
+            padding: 80px 2rem;
+        }
+
+        .map-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .map-container h2 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .map-container > p {
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+
+        .map-placeholder {
+            background: linear-gradient(135deg, #e0e0e0 0%, #f0f0f0 100%);
+            height: 400px;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+        }
+
+        .map-placeholder-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            padding: 80px 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .faq-section h2 {
+            text-align: center;
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 3rem;
+        }
+
+        .faq-item {
+            background: var(--white);
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            color: var(--text-light);
+            display: none;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--primary);
+            color: white;
+            padding: 60px 2rem 30px;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+
+        .footer-section h4 {
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-section a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.8rem;
+            transition: var(--transition);
+        }
+
+        .footer-section a:hover {
+            color: var(--gold);
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 3rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            color: rgba(255,255,255,0.6);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .page-header {
+                padding: 120px 1rem 60px;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .contact-form-container {
+                padding: 2rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="logo">
+                <span>🏠</span>
+                <span>双翼拓展箱</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="products.html">产品中心</a></li>
+                <li><a href="about.html">关于我们</a></li>
+                <li><a href="contact.html" class="active">联系我们</a></li>
+            </ul>
+            <button class="mobile-menu-btn">☰</button>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <h1>联系我们</h1>
+        <p>无论您是产品咨询、定制需求还是售后服务，我们的专业团队随时为您服务</p>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="contact-grid">
+            <!-- Contact Info -->
+            <div class="contact-info">
+                <h2>与我们取得联系</h2>
+                <p>选择最适合您的方式联系我们，我们将在24小时内回复您</p>
+
+                <div class="contact-methods">
+                    <div class="contact-method">
+                        <div class="method-icon">📞</div>
+                        <div class="method-content">
+                            <h4>电话咨询</h4>
+                            <a href="tel:400-888-8888">400-888-8888</a>
+                            <p>工作日 9:00-18:00</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-method">
+                        <div class="method-icon">✉️</div>
+                        <div class="method-content">
+                            <h4>电子邮件</h4>
+                            <a href="mailto:sales@expansionbox.com">sales@expansionbox.com</a>
+                            <p>商务合作与询价</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-method">
+                        <div class="method-icon">💬</div>
+                        <div class="method-content">
+                            <h4>在线客服</h4>
+                            <p>微信: ExpansionBox2024</p>
+                            <p>7×24小时在线</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-method">
+                        <div class="method-icon">📍</div>
+                        <div class="method-content">
+                            <h4>工厂地址</h4>
+                            <p>中国·生产基地（具体地址请咨询）</p>
+                            <p>欢迎实地考察参观</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="working-hours">
+                    <h3>🕐 工作时间</h3>
+                    <ul class="hours-list">
+                        <li>
+                            <span>周一至周五</span>
+                            <span>09:00 - 18:00</span>
+                        </li>
+                        <li>
+                            <span>周六</span>
+                            <span>09:00 - 12:00</span>
+                        </li>
+                        <li>
+                            <span>周日</span>
+                            <span>休息</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="contact-form-container">
+                <h2>在线咨询</h2>
+                <p>填写以下表单，我们将尽快与您联系</p>
+                
+                <form action="#" method="POST">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>您的姓名 <span class="required">*</span></label>
+                            <input type="text" name="name" placeholder="请输入您的姓名" required>
+                        </div>
+                        <div class="form-group">
+                            <label>联系电话 <span class="required">*</span></label>
+                            <input type="tel" name="phone" placeholder="请输入您的电话" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>电子邮箱</label>
+                        <input type="email" name="email" placeholder="请输入您的邮箱">
+                    </div>
+
+                    <div class="form-group">
+                        <label>咨询产品 <span class="required">*</span></label>
+                        <select name="product" required>
+                            <option value="">请选择感兴趣的产品</option>
+                            <option value="20ft">20尺双翼拓展箱</option>
+                            <option value="30ft">30尺双翼拓展箱</option>
+                            <option value="40ft">40尺双翼拓展箱</option>
+                            <option value="folding">折叠房/瓦楞房</option>
+                            <option value="custom">定制需求</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>使用场景</label>
+                        <select name="scenario">
+                            <option value="">请选择使用场景</option>
+                            <option value="construction">工地宿舍</option>
+                            <option value="homestay">景区民宿</option>
+                            <option value="office">临时办公</option>
+                            <option value="emergency">应急住房</option>
+                            <option value="personal">个人度假屋</option>
+                            <option value="other">其他</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>需求描述</label>
+                        <textarea name="message" placeholder="请详细描述您的需求，包括数量、规格、交付时间等..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-submit">提交咨询</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="map-section">
+        <div class="map-container">
+            <h2>我们的位置</h2>
+            <p>欢迎预约实地考察，亲身体验产品质量</p>
+            <div class="map-placeholder">
+                <div class="map-placeholder-icon">🗺️</div>
+                <p>地图加载区域</p>
+                <p style="font-size: 0.9rem; margin-top: 0.5rem;">请在此处嵌入百度地图或高德地图</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <h2>常见问题</h2>
+        
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>产品的交付周期是多久？</span>
+                <span>▼</span>
+            </div>
+            <div class="faq-answer">
+                标准产品的交付周期为15-20个工作日，定制产品根据具体要求可能需要25-35个工作日。旺季（3-6月）可能需要额外5-10天。
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>是否提供安装服务？</span>
+                <span>▼</span>
+            </div>
+            <div class="faq-answer">
+                我们提供三种安装方案：1）视频指导安装（免费）；2）远程技术支持；3）上门安装服务（根据距离收费）。标准产品2-3人4小时即可完成安装。
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>产品质保期是多长？</span>
+                <span>▼</span>
+            </div>
+            <div class="faq-answer">
+                我们提供主体结构5年质保，电器设备2年质保，终身维护支持。质保期内非人为损坏免费维修或更换。
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>可以定制外观和内饰吗？</span>
+                <span>▼</span>
+            </div>
+            <div class="faq-answer">
+                当然可以！我们支持外观颜色、墙板材质、内部布局、家具配置等多种定制。请联系我们的销售团队获取定制方案和报价。
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>运输费用如何计算？</span>
+                <span>▼</span>
+            </div>
+            <div class="faq-answer">
+                运输费用根据距离、数量和运输方式计算。我们可以协助安排物流，或您自行安排提货。批量订单（5台以上）可享受运费优惠。
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>产品系列</h4>
+                <a href="products.html">20尺双翼拓展箱</a>
+                <a href="products.html">30尺双翼拓展箱</a>
+                <a href="products.html">40尺双翼拓展箱</a>
+                <a href="products.html">折叠房/瓦楞房</a>
+            </div>
+            <div class="footer-section">
+                <h4>应用场景</h4>
+                <a href="#">工地宿舍</a>
+                <a href="#">景区民宿</a>
+                <a href="#">临时办公</a>
+                <a href="#">应急住房</a>
+            </div>
+            <div class="footer-section">
+                <h4>服务支持</h4>
+                <a href="#">产品定制</a>
+                <a href="#">安装指导</a>
+                <a href="#">售后服务</a>
+                <a href="#">常见问题</a>
+            </div>
+            <div class="footer-section">
+                <h4>联系我们</h4>
+                <a href="tel:400-888-8888">📞 400-888-8888</a>
+                <a href="mailto:sales@expansionbox.com">✉️ sales@expansionbox.com</a>
+                <a href="#">📍 中国·生产基地</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 双翼拓展箱. All Rights Reserved. | 模块化移动房屋解决方案提供商</p>
+        </div>
+    </footer>
+
+    <script>
+        // Simple FAQ toggle
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                item.classList.toggle('active');
+                const arrow = question.querySelector('span:last-child');
+                arrow.textContent = item.classList.contains('active') ? '▲' : '▼';
+            });
+        });
+    </script>
+</body>
+</html>
