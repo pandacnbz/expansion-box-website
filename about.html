@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关于我们 - 双翼拓展箱 | 龙泰集成房屋</title>
+    <meta name="description" content="了解龙泰拓展箱品牌故事、核心价值和竞争优势。专业模块化集成房屋制造商，专注双翼拓展箱研发生产。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a365d;
+            --primary-light: #2c5282;
+            --accent: #dd6b20;
+            --accent-light: #ed8936;
+            --text: #2d3748;
+            --text-light: #718096;
+            --bg-light: #f7fafc;
+            --white: #ffffff;
+            --border: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+            --shadow-lg: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            background: var(--white);
+        }
+        
+        /* Header */
+        header {
+            background: var(--white);
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+        
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 700;
+            font-size: 20px;
+        }
+        
+        .logo-text {
+            color: var(--primary);
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .logo-sub {
+            color: var(--text-light);
+            font-size: 0.75rem;
+            font-weight: 400;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        nav a:hover,
+        nav a.active {
+            color: var(--accent);
+        }
+        
+        nav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--accent);
+        }
+        
+        .cta-btn {
+            background: var(--accent);
+            color: var(--white);
+            padding: 10px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .cta-btn:hover {
+            background: var(--accent-light);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: var(--white);
+            padding: 150px 20px 80px;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .breadcrumb {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 30px;
+            font-size: 0.9rem;
+        }
+        
+        .breadcrumb a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+        }
+        
+        .breadcrumb a:hover {
+            color: var(--white);
+        }
+        
+        .breadcrumb span {
+            color: rgba(255,255,255,0.5);
+        }
+        
+        /* About Intro */
+        .about-intro {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .intro-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .intro-content h2 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .intro-content h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+        
+        .intro-content p {
+            color: var(--text-light);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        
+        .intro-image {
+            position: relative;
+        }
+        
+        .intro-image img {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .experience-badge {
+            position: absolute;
+            bottom: -20px;
+            left: -20px;
+            background: var(--accent);
+            color: var(--white);
+            padding: 25px 35px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .experience-badge .number {
+            font-size: 3rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+        
+        .experience-badge .text {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        /* Core Values */
+        .core-values {
+            background: var(--bg-light);
+            padding: 80px 20px;
+        }
+        
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 60px;
+        }
+        
+        .section-header h2 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .section-header p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+        
+        .values-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+        
+        .value-card {
+            background: var(--white);
+            padding: 40px 30px;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s;
+            box-shadow: var(--shadow);
+        }
+        
+        .value-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .value-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            color: var(--white);
+            font-size: 1.8rem;
+        }
+        
+        .value-card h3 {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .value-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+        
+        /* Advantages */
+        .advantages {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .advantages-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+        
+        .advantage-item {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .advantage-number {
+            width: 50px;
+            height: 50px;
+            background: var(--accent);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+        
+        .advantage-content h3 {
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .advantage-content p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+        
+        /* Stats */
+        .stats {
+            background: var(--primary);
+            color: var(--white);
+            padding: 60px 20px;
+        }
+        
+        .stats-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            text-align: center;
+        }
+        
+        .stat-item .number {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .stat-item .label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        /* Mission & Vision */
+        .mission {
+            padding: 80px 20px;
+            background: var(--bg-light);
+        }
+        
+        .mission-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        
+        .mission-card {
+            background: var(--white);
+            padding: 50px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+        
+        .mission-card h3 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .mission-card h3 span {
+            font-size: 2rem;
+        }
+        
+        .mission-card p {
+            color: var(--text-light);
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+        
+        /* CTA */
+        .cta-section {
+            padding: 100px 20px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: var(--white);
+            text-align: center;
+        }
+        
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .cta-section p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+        
+        .btn-primary {
+            background: var(--accent);
+            color: var(--white);
+            padding: 16px 40px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+        
+        .btn-primary:hover {
+            background: var(--accent-light);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            padding: 16px 40px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            border: 2px solid var(--white);
+            transition: all 0.3s;
+            display: inline-block;
+        }
+        
+        .btn-secondary:hover {
+            background: var(--white);
+            color: var(--primary);
+        }
+        
+        /* Footer */
+        footer {
+            background: #1a202c;
+            color: var(--white);
+            padding: 60px 20px 30px;
+        }
+        
+        .footer-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 60px;
+        }
+        
+        .footer-brand h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .footer-brand p {
+            color: #a0aec0;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        
+        .footer-col h4 {
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            color: var(--white);
+        }
+        
+        .footer-col ul {
+            list-style: none;
+        }
+        
+        .footer-col li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-col a {
+            color: #a0aec0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-col a:hover {
+            color: var(--accent);
+        }
+        
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 50px auto 0;
+            padding-top: 30px;
+            border-top: 1px solid #2d3748;
+            text-align: center;
+            color: #718096;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .values-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .advantages-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .intro-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .advantages-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 30px;
+            }
+            
+            .mission-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .experience-badge {
+                position: relative;
+                bottom: auto;
+                left: auto;
+                margin-top: 20px;
+                display: inline-block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">LT</div>
+                <div>
+                    <div class="logo-text">双翼拓展箱</div>
+                    <div class="logo-sub">龙泰集成房屋</div>
+                </div>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="products.html">产品系列</a></li>
+                    <li><a href="about.html" class="active">关于我们</a></li>
+                    <li><a href="contact.html">联系我们</a></li>
+                </ul>
+            </nav>
+            <a href="contact.html" class="cta-btn">获取报价</a>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>关于龙泰</h1>
+        <p>专注于模块化集成房屋研发与制造，为全球客户提供高品质拓展箱解决方案</p>
+        <div class="breadcrumb">
+            <a href="index.html">首页</a>
+            <span>/</span>
+            <span>关于我们</span>
+        </div>
+    </section>
+    
+    <!-- About Intro -->
+    <section class="about-intro">
+        <div class="intro-grid">
+            <div class="intro-content">
+                <h2>创新引领未来居住方式</h2>
+                <p>龙泰集成房屋是一家专注于模块化建筑研发、生产和销售的创新型企业。我们致力于通过技术创新，为全球客户提供灵活、环保、高品质的可拓展居住解决方案。</p>
+                <p>作为行业领先的双翼拓展箱制造商，我们的产品已出口至全球50多个国家和地区，广泛应用于工地宿舍、景区民宿、应急住房、临时办公等多个场景。</p>
+                <p>我们相信，通过持续的技术创新和对品质的执着追求，能够为人类创造更加灵活、可持续的居住空间，让高品质生活触手可及。</p>
+            </div>
+            <div class="intro-image">
+                <div style="background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e0 100%); height: 400px; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #718096;">
+                    <span style="font-size: 5rem;">🏭</span>
+                </div>
+                <div class="experience-badge">
+                    <div class="number">10+</div>
+                    <div class="text">年行业经验</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Core Values -->
+    <section class="core-values">
+        <div class="section-header">
+            <h2>核心价值观</h2>
+            <p>驱动我们前进的四大核心理念，塑造龙泰独特的企业文化</p>
+        </div>
+        <div class="values-grid">
+            <div class="value-card">
+                <div class="value-icon">⚡</div>
+                <h3>创新驱动</h3>
+                <p>持续投入研发，不断突破技术边界，引领模块化建筑行业创新发展</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">✓</div>
+                <h3>品质至上</h3>
+                <p>严格把控每一个生产环节，确保交付给客户的每一台产品都经得起时间考验</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">🌱</div>
+                <h3>绿色发展</h3>
+                <p>践行可持续理念，减少建筑废弃物，为地球环保贡献力量</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">🤝</div>
+                <h3>客户为先</h3>
+                <p>深入理解客户需求，提供定制化解决方案，与客户共同成长</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Advantages -->
+    <section class="advantages">
+        <div class="section-header">
+            <h2>我们的优势</h2>
+            <p>选择龙泰，选择专业与信赖</p>
+        </div>
+        <div class="advantages-grid">
+            <div class="advantage-item">
+                <div class="advantage-number">01</div>
+                <div class="advantage-content">
+                    <h3>技术领先</h3>
+                    <p>拥有自主知识产权的双翼拓展系统，折叠收纳空间小，展开后使用面积大</p>
+                </div>
+            </div>
+            <div class="advantage-item">
+                <div class="advantage-number">02</div>
+                <div class="advantage-content">
+                    <h3>产品丰富</h3>
+                    <p>提供20尺、30尺、40尺等多种规格，以及折叠房、瓦楞房等多种产品类型</p>
+                </div>
+            </div>
+            <div class="advantage-item">
+                <div class="advantage-number">03</div>
+                <div class="advantage-content">
+                    <h3>定制灵活</h3>
+                    <p>支持外观颜色、内饰材料、功能布局的个性化定制，满足不同场景需求</p>
+                </div>
+            </div>
+            <div class="advantage-item">
+                <div class="advantage-number">04</div>
+                <div class="advantage-content">
+                    <h3>交付快速</h3>
+                    <p>标准化生产流程，现货库存充足，订单交付周期短，最快7天可出货</p>
+                </div>
+            </div>
+            <div class="advantage-item">
+                <div class="advantage-number">05</div>
+                <div class="advantage-content">
+                    <h3>全球服务</h3>
+                    <p>产品远销50+国家，拥有丰富的海外项目经验，提供完善的售后支持</p>
+                </div>
+            </div>
+            <div class="advantage-item">
+                <div class="advantage-number">06</div>
+                <div class="advantage-content">
+                    <h3>性价比高</h3>
+                    <p>工厂直销，省去中间环节，在保证品质的前提下提供最具竞争力的价格</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Stats -->
+    <section class="stats">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="number">10+</div>
+                <div class="label">年行业经验</div>
+            </div>
+            <div class="stat-item">
+                <div class="number">5000+</div>
+                <div class="label">成功案例</div>
+            </div>
+            <div class="stat-item">
+                <div class="number">50+</div>
+                <div class="label">服务国家</div>
+            </div>
+            <div class="stat-item">
+                <div class="number">98%</div>
+                <div class="label">客户满意度</div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Mission & Vision -->
+    <section class="mission">
+        <div class="mission-grid">
+            <div class="mission-card">
+                <h3><span>🎯</span> 企业使命</h3>
+                <p>让高品质、可移动的集成房屋惠及全球每一个角落。通过技术创新和精益制造，为人类创造更加灵活、环保、舒适的居住空间，让建筑不再是固定的束缚，而是流动的可能。</p>
+            </div>
+            <div class="mission-card">
+                <h3><span>🚀</span> 企业愿景</h3>
+                <p>成为全球领先的模块化集成房屋解决方案提供商。以双翼拓展箱为核心，持续拓展产品线，打造覆盖居住、办公、商业等多场景的移动建筑生态，引领行业向更智能、更绿色的方向发展。</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA -->
+    <section class="cta-section">
+        <h2>开启您的项目之旅</h2>
+        <p>无论是工地宿舍、景区民宿还是应急住房，我们都能为您提供专业的解决方案</p>
+        <div class="cta-buttons">
+            <a href="contact.html" class="btn-primary">立即咨询</a>
+            <a href="products.html" class="btn-secondary">浏览产品</a>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h3>双翼拓展箱 - 龙泰集成房屋</h3>
+                <p>专注于模块化集成房屋研发与制造，为全球客户提供高品质、可拓展的居住解决方案。</p>
+            </div>
+            <div class="footer-col">
+                <h4>产品系列</h4>
+                <ul>
+                    <li><a href="products.html">20尺双翼拓展箱</a></li>
+                    <li><a href="products.html">30尺双翼拓展箱</a></li>
+                    <li><a href="products.html">40尺双翼拓展箱</a></li>
+                    <li><a href="products.html">折叠房系列</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>快速链接</h4>
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="about.html">关于我们</a></li>
+                    <li><a href="products.html">产品中心</a></li>
+                    <li><a href="contact.html">联系我们</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>联系方式</h4>
+                <ul>
+                    <li>电话：400-XXX-XXXX</li>
+                    <li>邮箱：info@longtai.com</li>
+                    <li>地址：中国XX省XX市XX区</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 龙泰集成房屋 版权所有 | 双翼拓展箱专业制造商</p>
+        </div>
+    </footer>
+</body>
+</html>
